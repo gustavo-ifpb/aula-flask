@@ -13,8 +13,9 @@ source env/bin/activate
 pip install Flask
 ```
 
-4. Criar a estrutura básica do projeto
-4.1 Criar o arquivo **run.py**
+4. Criar a estrutura básica do projeto  
+
+4.1. Criar o arquivo **run.py**
 
 ```python
 from app import app
@@ -22,8 +23,9 @@ from app import app
 app.run(debug=True, host='0.0.0.0')
 ```
 
-4.2 Criar a pasta **app**
-4.3 Criar o arquivo **__init__.py** dentro da pasta **app**
+4.2. Criar a pasta **app**
+
+4.3. Criar o arquivo **__init__.py** dentro da pasta **app**
 
 ```python
 from flask import Flask
@@ -33,7 +35,7 @@ app = Flask(__name__)
 from app import views
 ```
 
-4.4 Criar o arquivo **views.py** dentro da pasta **app**
+4.4. Criar o arquivo **views.py** dentro da pasta **app**
 
 ```python
 from app import app
