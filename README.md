@@ -1,4 +1,4 @@
-# aula-flask
+# Desenvolvimento de Aplicações para Web: Flask
 
 1. Criação de ambiente virtual
 2. Ativação do ambiente virtual
