@@ -1,32 +1,18 @@
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
 
 from app import app
 
 posts = []
 
-@app.route('/')
-def hello():
-    usuarioAutenticado = 'Gustavo'
-    nomes = ['isaque', 'milena', 'daniel']
-    return render_template(
-        'index.html', 
-        title='Desenvolvimento de Aplicações Web - INTIN 4',
-        alunos=nomes,
-        user=usuarioAutenticado)
+@app.route('/', methods=['GET'])
+def index():
+    return render_template('twitter.html', posts=posts)
 
-@app.route('/form', methods=['POST', 'GET'])
-def helloForm():
+@app.route('/twitter', methods=['POST'])
+def twitter():
     if request.method == 'POST':
-        email = request.form['email']
-        if 'status' in request.form:
-            status = request.form['status']
-        else:
-            status = 'off'
-        msg = request.form['msg']
-        return render_template(
-            'form_view.html', 
-            email=email,
-            status=status,
-            message=msg)
-    else:
-        return 'Rota apenas para requisições do tipo POST'
+        post = {}
+        post['name'] = request.form['name']
+        post['msg'] = request.form['msg']
+        posts.append(post)
+    return redirect(url_for('index'))
