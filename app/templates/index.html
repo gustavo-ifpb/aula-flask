@@ -17,5 +17,24 @@
         <li>{{ aluno }}</li>
         {% endfor %}
     </ol>
+
+    <form method="POST" action="/form">
+        <p>
+            Email:</br>
+            <input style="width: 20%" type="text" name="email"/>
+        </p>
+        <p>
+            Status:</br>
+            <input type="checkbox" name="status"/>
+        </p>
+        <p>
+            Mensagem:</br>
+            <textarea name="msg"></textarea>
+        </p>
+        <p>
+            <input type="submit" value="Enviar"/>
+        </p>
+    </form>
+
 </body>
 </html>
