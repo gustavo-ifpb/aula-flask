@@ -1,47 +1,40 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Twitter</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <style>
-        .content {
-            width: 30%;
-            left: 30%;
-            position: relative;
-        }
-        .content input, .content textarea {
-            width: 100%;
-        }
-        .content input[type="submit"] {
-            width: 30%;
-        }
-    </style>
-</head>
-<body>
-    <div class="content">
-        <h1>Twitter</h1>
-        <form method="POST" action="/twitter">
-            <p>
-                Name:
-                <input type="text" name="name"/>
-            </p>
-            <p>
-                Mensagem:
-                <textarea name="msg" rows="4"></textarea>
-            </p>
-            <p>
-                <input type="submit" value="Enviar"/>
-            </p>
-        </form>
-        {% for post in posts %}
-            <hr/>
-            <p>
-                Name: {{ post.name }}</br>
-                Message: {{ post.msg }}
-            </p>        
-        {% endfor %}
-    </div>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block sidebar %}
+<h3>Menu</h3>
+<ul>
+    <li>Usuários</li>
+    <li>Tweets</li>
+</ul>
+{% endblock %}
+
+{% block content %}
+    <form method="POST" action="/twitter">
+        <div class="form-group">
+            <label for="nameInput">Nome:</label>
+            <input type="text" name="name" class="form-control" id="nameInput" aria-describedby="nameHelp" placeholder="Insira o seu nome">
+            <small id="nameHelp" class="form-text text-muted">Insira o seu nome completo no campo acima.</small>
+        </div>
+        <p>
+            Name:
+            <input type="text" name="name" value="{{ session_name }}"/>
+        </p>
+        <p>
+            Mensagem:
+            <textarea name="msg" rows="4"></textarea>
+        </p>
+        <p>
+            <input type="submit" value="Enviar"/>
+        </p>
+    </form>
+    {% if query %}
+    Tweets de {{ query }}
+    {% endif %}
+    {% for post in posts %}
+        <hr/>
+        <p>
+            Name: <a href="{{ url_for('search', text=post.name) }}">{{ post.name }}</a></br>
+            Message: {{ post.tweet }}
+        </p>        
+    {% endfor %}
+{% endblock %}
